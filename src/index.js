@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import SeasonDisplay from './SeasonDisplay'
-import Spinner from './Spinner'
+import SeasonDisplay from "./SeasonDisplay";
+import Spinner from "./Spinner";
 
 class App extends Component {
   state = { lat: null, errrorMessage: "" };
@@ -13,16 +13,20 @@ class App extends Component {
     );
   }
 
-  render() {
+  renderContent() {
     if (this.state.errrorMessage && !this.state.lat) {
       return <div> Error: {this.state.errrorMessage}</div>;
     }
 
     if (!this.state.errrorMessage && this.state.lat) {
-      return <SeasonDisplay lat={this.state.lat}/>;
+      return <SeasonDisplay lat={this.state.lat} />;
     }
 
-    return <Spinner message="Please accept location request"/>;
+    return <Spinner message="Please accept location request" />;
+  }
+
+  render() {
+    return <div className="border red">{this.renderContent()}</div>;
   }
 }
 
